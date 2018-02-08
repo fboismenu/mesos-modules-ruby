@@ -1,0 +1,13 @@
+language: cpp
+dist: trusty
+sudo: required
+compiler:
+- gcc
+install:
+  - sudo apt-get install -y tar wget git openjdk-8-jdk autoconf libtool build-essential python-dev python-six python-virtualenv libcurl4-nss-dev libsasl2-dev libsasl2-modules maven libapr1-dev libsvn-dev zlib1g-dev libevent-dev
+  - curl -O http://archive.apache.org/dist/mesos/1.4.0/mesos-1.4.0.tar.gz
+  - tar xvzf mesos-1.4.0.tar.gz
+  - cd mesos-*
+  - ls -l
+  - ./configure CFLAGS="-Wno-deprecated-declarations" CXXFLAGS="-Wno-deprecated-declarations" --disable-silence-rules --disable-python --disable-python-dependency-install --enable-libevent --enable-ssl --enable-optimize
+  - make V=0
